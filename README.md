@@ -129,7 +129,3 @@ HR-Employee-Management-System
 ## Author
 
 Aishwarya J.
-
----
-
-This project was developed as a professional Spring Boot learning project demonstrating REST API development, persistence, validation, security, testing, and monitoring.
