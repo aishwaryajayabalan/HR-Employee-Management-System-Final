@@ -125,7 +125,32 @@ HR-Employee-Management-System
 ├── mvnw.cmd
 └── README.md
 ```
+## Security Configuration
 
+The application uses Spring Security to protect its REST API endpoints and control access to application resources. Security is configured in `SecurityConfig.java` using Spring Security's `SecurityFilterChain`.
+
+### Key Features
+
+- **CSRF Protection:** CSRF protection is disabled because the application uses stateless REST API authentication rather than cookie-based sessions.
+- **Stateless Authentication:** The application uses `SessionCreationPolicy.STATELESS`, meaning the server does not maintain an HTTP session for authentication between requests.
+- **Public Endpoints:** The `/actuator/health`, `/actuator/info`, `/swagger-ui/**`, and `/v3/api-docs/**` endpoints are accessible without authentication.
+- **Protected Endpoints:** All other API endpoints require authentication before access is granted.
+- **HTTP Basic Authentication:** The application uses HTTP Basic authentication, where clients provide a username and password in the HTTP `Authorization` header.
+- **Authentication Management:** Spring Security validates the supplied credentials using the configured authentication mechanism.
+
+### How It Works
+
+1. A client sends an HTTP request to the application.
+2. Spring Security checks the requested endpoint against the configured access rules.
+3. If the endpoint is public, the request can proceed without authentication.
+4. If the endpoint is protected, the client must provide valid authentication credentials.
+5. If authentication succeeds, the request proceeds to the appropriate controller. Otherwise, access is denied.
+
+### Purpose
+
+The security configuration helps prevent unauthorized access to employee information and other HR management resources while allowing public access to health monitoring and API documentation endpoints.
+
+**Note:** HTTP Basic authentication should be used over HTTPS in production environments to protect credentials during transmission.
 ## Author
 
 Aishwarya J.
